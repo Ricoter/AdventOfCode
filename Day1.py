@@ -4,7 +4,7 @@ import sys
 def read_data(input_file, data):
     with open(input_file, 'r') as f:
         for line in f:
-            for n in line[0:-1]: # get all chars except the last '\n' char
+            for n in line.strip(): # get all chars except the last '\n' char    
                 data.append(int(n)) # convert char to int
 
 
@@ -35,4 +35,4 @@ def main(input_file):
 
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    main("input1.in")
