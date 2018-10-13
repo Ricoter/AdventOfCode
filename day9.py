@@ -1,37 +1,35 @@
 data = []
-with open("input9test1" , "r") as f:
+with open("input9" , "r") as f:
     for line in f:
         for character in line:
-            data.append(character)
-print("check1", data[-1])
-
-# remove "/n" element
-del data[-1]
+            if character == "\n":
+                pass
+            else:
+                data.append(character)
 
 # remove elements after !
 for i, el in enumerate(data):
     if el == '!' and i != len(data)-1:
         del data[i+1]
 
+# remove all '!'
+data = list(filter(lambda a: a != '!', data))
+
 # remove garbicz:
+garbage = 0
 for i in range(len(data)):
     if i >= len(data):
         break
     if data[i] == '<':
         j = i
         while data[j] != '>':
+            garbage += 1
             del data[j]
-            j += 1
             if j >= len(data)-1:
                 break
+        garbage -= 1
+print("Garbage:", garbage)
 
-# remove unused "}"
-
-
-print(data.count('{'), data.count('}'), "check")
-testdata = ['{','{','{','{','}','}','}']
-# print(data)
-data = data[::-1]
 def count__data(data):
     score = 0
     depth = 0
@@ -39,11 +37,8 @@ def count__data(data):
         if element == '{':
             depth+=1
         if  element == '}':
-            if depth ==0:
-                depth =0
-            else:
-                depth-=1
-                score +=  depth
+            score += depth
+            depth-=1
     return score
 
 
