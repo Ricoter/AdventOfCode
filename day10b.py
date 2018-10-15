@@ -1,20 +1,19 @@
 import numpy as np
 
 # read data
-data = []
-with open("input10", "r") as f:
-    for character in f.readline().strip():
-        data.append(ord(character))
+#data = []
+#with open("input10t", "r") as f:
+#    for character in f.readline().strip():
+#        data.append(ord(character))
+
+data = [ord(x) for x in "31,2,85,1,80,109,35,63,98,255,0,13,105,254,128,33"]
 
 # add extra
 data += [17, 31, 73, 47, 23]
-# run list 64 times
-#data = data*64
 
 # init array
 A = np.asarray(range(256))
 skipsize = 0
-index = 0
 rolls = 0
 for i in range(64):
     for n in data:
@@ -36,18 +35,13 @@ for i in range(16):
         tmp ^= sparsehash[i*16 + j]
     densehash.append(tmp)
 
-# haxify numbers and add pad with '0' in front to get 2 characters
+# haxify 
 hexa = [hex(i).strip('0x') for i in densehash]
 hashed = ''
 for h in hexa:
+    # padding
     if len(h) == 1:
         hashed += '0'
     hashed += h
-    print(hashed)
 
-
-print(hexa)
 print(hashed)
-
-print(A)
-print(A[0]*A[1])
