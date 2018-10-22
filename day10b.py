@@ -38,6 +38,8 @@ def main(inputstring):
         # padding
         if len(h) == 1:
             hashed += '0'
+        if len(h) == 0:
+            hashed += '00'
         hashed += h
 
     return(hashed)
