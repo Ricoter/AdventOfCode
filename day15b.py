@@ -9,17 +9,17 @@ def main(a0, b0):
     count = 0
     a, b = a0, b0
     que_a, que_b = [], []
-    while N>0:
-        a = (a*factor_a) % remainder
-        b = (b*factor_b) % remainder
-        if a%4 == 0:
-            que_a.append(a%(2**16))
-        if b%8 == 0:
-            que_b.append(b%(2**16))
-        if que_a and que_b:
-            if que_a.pop(0) == que_b.pop(0):
-                count += 1
-            N -= 1
+    for i in range(N):
+        while not que_a:
+            a = (a*factor_a) % remainder
+            if a%4 == 0:
+                que_a.append(a%(2**16))
+        while not que_b:
+            b = (b*factor_b) % remainder
+            if b%8 == 0:
+                que_b.append(b%(2**16))
+        if que_a.pop(0) == que_b.pop(0):
+            count += 1
     return count
 
 
