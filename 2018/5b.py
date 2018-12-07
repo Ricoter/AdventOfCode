@@ -11,7 +11,6 @@ for c in range(ord('a'), ord('z')+1):
     data = fulldata[~(fulldata == c)]
     data = data[~(data == (c-diff))]
     shift = 1
-    print(data[:100])
     shifted_data = np.roll(data, shift) # imposes Periodic Boundary Conditions
     for _ in range(5000):
         remove = ((data-shifted_data) == diff) # boolean list of reactions
