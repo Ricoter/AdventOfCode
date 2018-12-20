@@ -13,7 +13,7 @@ def steps_to_centre_of_mass(_x, _dx):
     centre_of_mass = _x - _x.mean() # centre of mass  
     return round(-(centre_of_mass/centre_of_momentum_frame).mean())
 
-t = steps_to_centre_of_mass(x, dx) 
+t = steps_to_centre_of_mass(x, dx) # headshot
 print('timesteps', t)
 
 x += t*dx # move to centre
