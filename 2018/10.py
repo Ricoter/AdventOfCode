@@ -9,7 +9,7 @@ def timesteps_to_centre(_x, _dx):
 
 def show_message(x,y):
     x, y = x.astype(int), y.astype(int) # to int
-    x -= min(x) # normalize
+    x -= min(x) # trim zeros
     y -= min(y)
 
     grid = np.zeros((max(y)+1,max(x)+1)) # put text in grid
