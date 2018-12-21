@@ -12,7 +12,7 @@ def show_message(x,y):
     x -= min(x) # trim zeros
     y -= min(y)
 
-    grid = np.zeros((max(y)+1,max(x)+1)) # put text in grid
+    grid = np.zeros((max(y)+1,max(x)+1)) # text to grid
     for i in range(len(x)):
         grid[y[i]][x[i]] = 1
 
