@@ -24,9 +24,10 @@ def conv_sum(ndarray, filtersize):
         device = "cuda" 
     else:
         device = "cpu"
-    tensor = torch.Tensor(ndarray[None, None, :, :], device=device) # to Tensor [1,1,300,300]
-    filters = torch.ones(1,1,filtersize,filtersize, device=device) # 1 filter of 1's to sum
-    convolved = F.conv2d(tensor, filters, stride=1, padding=0) # convolution
+    with torch.no_grad():
+        tensor = torch.Tensor(ndarray[None, None, :, :], device=device) # to Tensor [1,1,300,300]
+        filters = torch.ones(1,1,filtersize,filtersize) # 1 filter of 1's to sum
+        convolved = F.conv2d(tensor, filters) # convolution
     return convolved.to("cpu").squeeze().numpy() # return numpy [298,298]
 
 def sliding_window(ndarray, windowsize): # alternative for conv_sum 
@@ -34,7 +35,7 @@ def sliding_window(ndarray, windowsize): # alternative for conv_sum
     conv = np.zeros((new_size, new_size))
     for i in range(new_size):
         for j in range(new_size):
-            conv[i,j] = np.sum(ndarray[i:i+windowsize,j:j+windowsize])
+            conv[i,j] = ndarray[i:i+windowsize,j:j+windowsize].sum()
     return conv
 
 def max_index(ndarray):
