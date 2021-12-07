@@ -5,8 +5,8 @@ def readData(infile):
         data = np.array(f.readline().split(',')).astype(int)
     return data
 
-def linear(x):
-    return x
+def linear(dx):
+    return dx
 
 def stepwiseIncremental(dx):
     return dx*(dx+1)/2
