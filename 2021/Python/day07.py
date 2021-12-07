@@ -13,12 +13,15 @@ def part1(data):
         fuelCosts += dx
     return  int(fuelCosts.min())
 
+def cost(dx):
+    return dx*(dx+1)/2
+
 def part2(data):
     fuelCosts = np.zeros(max(data))
     positions = np.arange(max(data))
     for x in data:
         dx = np.abs(positions - x)
-        fuelCosts += dx*(dx+1)/2
+        fuelCosts += cost(dx)
     return  int(fuelCosts.min())
 
 if __name__=='__main__':
