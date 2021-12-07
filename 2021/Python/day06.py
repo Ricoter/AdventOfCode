@@ -6,7 +6,7 @@ def readData(infile):
     return data
 
 def solve(data, days):
-    """Strategie: group fish by cycle day, than you complexity is O(1)"""
+    """Strategie: group fish by cycle day, than your complexity is O(1)"""
 
     fishList = np.zeros(9, int)
     for fish in data:
