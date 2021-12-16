@@ -9,41 +9,41 @@ def readData(infile):
     d = {}
     for line in data[2:]:
         a, b = line.split(" -> ")
-        d[a] = b
-    # data = [line.split(' ') for line in data]
-    # data = np.array([list(line) for line in data]).astype(int)
+        d[a] = (a[0]+b, b+a[1])
     return start, d
 
-def part1(data):
-    seq, d = data
-    for _ in range(10):
-        new_seq = [seq[0]]
-        for i in range(len(seq)-1):
-            new_seq += [d[seq[i:i+2]], seq[i+1]]
-        seq = "".join(new_seq)
-    count = Counter(seq).values()
-    return max(count)- min(count)
 
-def part2(data):
-    # seq, d = data
-    # vals = []
-    # for _ in range(20):
-    #     new_seq = [seq[0]]
-    #     for i in range(len(seq)-1):
-    #         new_seq += [d[seq[i:i+2]], seq[i+1]]
-    #     seq = "".join(new_seq)
-    #     count = Counter(seq).values()
-    #     vals.append(max(count)- min(count))
-    #     print(max(count), min(count))
-    # print(vals)
-    # print([vals[i+1]/vals[i] for i in range(len(vals)-1)])
-    # plt.plot(vals)
-    # plt.show()
-    return
+
+def solve(data, runs):
+    """ Count pairs so complexity is proportional to the number of pairs """
+    seq, d = data
+
+    # counts number of pairs 
+    n_pairs = {x:0 for x in d}
+    for i in range(len(seq)-1):
+        n_pairs[seq[i]+seq[i+1]] += 1
 
     
+    for _ in range(runs):
+        next_pairs = {x:0 for x in d}
+        for key, value in n_pairs.items():
+            if value > 0:
+                a, b = d[key]
+                next_pairs[a] += value
+                next_pairs[b] += value
+        n_pairs = next_pairs
+
+    char_counter = {seq[-1]:1}
+    for key, value in n_pairs.items():
+        c = key[0]
+        if c not in char_counter:
+            char_counter[c] = 0
+        char_counter[c] += value
+    
+    return max(char_counter.values()) - min(char_counter.values())
+
+
 if __name__=='__main__':
     data = readData('../Data/day14')
-    print(data)
-    print(part1(data))
-    print(part2(data))
+    print(solve(data, 10))
+    print(solve(data, 40))
