@@ -16,13 +16,10 @@ def hex2bin(hex):
 def read_literal(residual):
     literal_bin = ""
     while True:
-        # print("1:", residual)
         prefix = residual[0]
         literal_bin += residual[1:5]
         residual = residual[5:]
-        # print("2:", residual)
-        # print("3:", literal_bin)
-        # print("4:", prefix)
+    
         if prefix == '0':
             break
     return int(literal_bin, 2), residual
@@ -31,13 +28,8 @@ def solve1(bin, total_V=0):
     V = bin[0:3] # packet_version
     T = bin[3:6] #type_ID
     residual = bin[6:]
-    # print("V, T:", V, T)
-
-    # print("residual:", residual)
     if T == '100':
-        # print("LITERAL")
-        literal, residual = read_literal(residual)
-
+        _, residual = read_literal(residual)
     else:
         I = bin[6] # length_type_ID
         if I == '0':
@@ -52,7 +44,6 @@ def solve1(bin, total_V=0):
             If the length type ID is 1, then the next 11 bits are a number that represents:
              the number of sub-packets immediately contained by this packet.
             """
-            # print("OPERATOR with I=1")
             L = bin[7:7+11]
             n_sub_packets = int(L, 2)
             residual = bin[7+11:]
