@@ -15,5 +15,5 @@ def part2(data):
 
 if __name__=='__main__':
     data = readData('../Data/day13')
-    print(part1(np.copy(data)))
+    print(part1(data))
     print(part2(data))
