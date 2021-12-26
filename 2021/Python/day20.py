@@ -18,14 +18,25 @@ def solve(data, runs):
 
     pad_value = 0
     for _ in range(runs):
-        L = img.shape[0] + 2
-        new_img = np.zeros((L, L), int)
+        # create output img
+        rows, cols = img.shape[0] + 2, img.shape[1] + 2
+        new_img = np.zeros((rows, cols), int)
+
+        # pad input img
         img = np.pad(img, pad_width=2, mode='constant', constant_values=pad_value)
-        for i in range(L):
-            for j in range(L):
-                x = img[i:i+3, j:j+3].flatten().dot(bitify)
+
+        for i in range(rows):
+            for j in range(cols):
+                # window to binary array
+                x = img[i:i+3, j:j+3].flatten()
+
+                # binary array to integer
+                x = x.dot(bitify)
+
+                # write output img
                 new_img[i,j] = enhancement[x]
         
+        # updates
         pad_value = enhancement[pad_value]
         img = new_img
 
