@@ -112,5 +112,5 @@ def solve(data):
 if __name__=='__main__':
     data = readData('../Data/day19')
     tic = time.time()
-    print(solve(data)) # Brute Force 14682.0
+    print(solve(data)) # Brute Force
     print("time:", time.time()-tic)
