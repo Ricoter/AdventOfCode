@@ -90,7 +90,7 @@ def Manhattan_distance(a, b):
     return sum(abs(a[i]-b[i]) for i in range(3))
 
 
-def part1(data):
+def solve(data):
     scanners = []
     aligned = [data[0]]
     not_aligned = data[1:]
@@ -109,9 +109,8 @@ def part1(data):
     return n_beacons, hi
 
 
-
 if __name__=='__main__':
     data = readData('../Data/day19')
     tic = time.time()
-    print(part1(data)) # Brute Force 14682.0
+    print(solve(data)) # Brute Force 14682.0
     print("time:", time.time()-tic)
