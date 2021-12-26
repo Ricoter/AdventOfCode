@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 
 def readData(infile):
     with open(infile, 'r') as f:
@@ -18,27 +17,20 @@ def solve(data, runs):
     bitify = np.array([256,128,64,32,16,8,4,2,1])
 
     pad_value = 0
-    img = np.pad(img, pad_width=1, mode='constant', constant_values=pad_value)
     for _ in range(runs):
-        
-        new_img = np.zeros_like(img)
-        rows, cols = new_img.shape
-        img = np.pad(img, pad_width=1, mode='constant', constant_values=pad_value)
-        
-        for i in range(rows):
-            for j in range(cols):
-                k = img[i:i+3, j:j+3].flatten()
-                k = k.dot(bitify)
-                new_img[i,j] = enhancement[k]
+        L = img.shape[0] + 2
+        new_img = np.zeros((L, L), int)
+        img = np.pad(img, pad_width=2, mode='constant', constant_values=pad_value)
+        for i in range(L):
+            for j in range(L):
+                x = img[i:i+3, j:j+3].flatten().dot(bitify)
+                new_img[i,j] = enhancement[x]
         
         pad_value = enhancement[pad_value]
-        img = np.pad(new_img, pad_width=1, mode='constant', constant_values=pad_value)
+        img = new_img
 
-    
     return np.sum(img)
 
-def part2(data):
-    return 
 
 if __name__=='__main__':
     data = readData('../Data/day20')
