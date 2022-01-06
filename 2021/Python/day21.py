@@ -36,7 +36,7 @@ def part2(position : list, max_score : int = 21, board_size : int = 10):
 
         # update score
         new_game = np.zeros_like(game)
-        for j in range(10):
+        for j in range(board_size):
             for k in range(max_score):
                 if i%2==0:
                     if k+j+1 >= max_score:

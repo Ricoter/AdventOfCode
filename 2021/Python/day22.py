@@ -73,7 +73,7 @@ def sub_cuboids(a : np.ndarray , b : np.ndarray) -> list[np.ndarray]:
     return cuboids
 
 
-def solve(data):
+def solve(data : np.ndarray) -> int:
     score = 0
     for i, line in enumerate(data):
         if line[0] == 0:
