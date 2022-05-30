@@ -14,7 +14,7 @@ SELECT forward * (down - up)
 FROM 
   (SELECT SUM(x) AS forward FROM data WHERE data.d like 'forward'),
   (SELECT SUM(x) AS up FROM data WHERE data.d like 'up'),
-  (SELECT SUM(x) AS down from data WHERE data.d like 'down')
+  (SELECT SUM(x) AS down from data WHERE data.d like 'down');
 
 -- Part two
 SELECT horizontal * SUM(depth)
@@ -44,4 +44,4 @@ FROM
   SELECT SUM(x) AS horizontal 
   FROM data 
   WHERE data.d LIKE 'forward'
-)
+);
