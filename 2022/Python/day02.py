@@ -5,17 +5,8 @@
 """
 
 def readData(infile : str) -> list:
-    """ creates a 2d numpy array
-
-    Args:
-        infile (str): pointer to input file
-
-    Returns:
-        list: _description_
-    """
     with open(infile, 'r') as f:
         data = [line.strip('\n').split(' ') for line in f]
-    print(data)
     return data
 
 def part1(data):
@@ -85,5 +76,6 @@ def part2(data):
 
 if __name__=='__main__':
     data = readData('../Data/day02')
-    print(part1(data))
-    print(part2(data))
+
+    print("part 1:", part1(data))
+    print("part 2:", part2(data))

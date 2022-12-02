@@ -3,18 +3,14 @@
     Python v3.10.6
     Rico van Midde
 """
+
 def readData(infile):
     with open(infile, 'r') as f:
         data = [line.strip('\n') for line in f]
 
-    print(data)
     return data
 
 def part1(data):
-    points = 0
-    for line in data:
-        _points = 0
-
     return
 
 def part2(data):
@@ -22,5 +18,7 @@ def part2(data):
 
 if __name__=='__main__':
     data = readData('../Data/day02')
-    print(part1(data))
-    print(part2(data))
+    # print(data)
+
+    print("part 1:", part1(data))
+    print("part 2:", part2(data))
