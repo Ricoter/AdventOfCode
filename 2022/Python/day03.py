@@ -3,26 +3,29 @@
     Python v3.10.6
     Rico van Midde
 """
-
 import numpy as np
 
 
 def readData(infile):
     with open(infile, 'r') as f:
         data = [line.strip('\n') for line in f]
-    return data
+    return np.array(data)
 
 
 def overlap(a : str, b : str) -> chr:
-    return list(set(a) & set(b))[0]
+    return (set(a) & set(b)).pop()
+
+
+def overlap3(a : str, b : str, c : str) -> chr:
+    return (set(a) & set(b) & set(c)).pop()
 
 
 def priority(c : chr) -> int:
     if c.isupper(): 
-        val = ord(c) - ord('A') + 27
+        value = ord(c) - ord('A') + 27
     else:
-        val = ord(c) - ord('a') + 1
-    return val
+        value = ord(c) - ord('a') + 1
+    return value
 
 
 def part1(data):
@@ -35,10 +38,10 @@ def part1(data):
 
 
 def part2(data):
+    data = data.reshape(-1, 3)
     priorities = 0
-    data = np.array(data).reshape(-1, 3)
     for a, b, c in data:
-        priorities += priority(list(set(a) & set(b) & set(c))[0])
+        priorities += priority(overlap3(a, b, c))
     return priorities
 
 
