@@ -4,9 +4,10 @@
     Rico van Midde
 """
 import numpy as np
+from copy import deepcopy
 import re
 
-def readData(infile : str) -> np.array(int):
+def readData(infile : str) -> NotImplemented:
     with open(infile, 'r') as f:
         data = [line.strip('\n') for line in f]
 
@@ -18,17 +19,17 @@ def readData(infile : str) -> np.array(int):
     return np.array(data).astype(int)
 
 
-def part1(data):
+def part1(data : NotImplemented) -> NotImplemented:
     return
 
 
-def part2(data):
+def part2(data : NotImplemented) -> NotImplemented:
     return 
 
 
 if __name__=='__main__':
-    data = readData('../Data/day02')
+    data = readData('../Data/day')
     print(data)
 
-    print("part 1:", part1(data))
+    print("part 1:", part1(deepcopy(data)))
     print("part 2:", part2(data))
