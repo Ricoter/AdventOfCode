@@ -70,6 +70,7 @@ def part1(monkeys : list) -> int:
 
 def part2(monkeys : list) -> int:
     large_modulus = np.prod([x['Test'] for x in monkeys])
+    print(large_modulus)
     for round in range(10000):
         for i, monkey in enumerate(monkeys):
             for item in monkey['Items']:

@@ -9,25 +9,20 @@ import re
 from time import time
 
 
-def readData(infile : str) -> NotImplemented:
+def readData(infile : str) -> list:
     data = []
     with open(infile, 'r') as f:
         for line in f:
             line = line.strip()
-            line = re.split(r"=|,|:", line)
+            line = re.split(r"[A-z]| |:|\.", line)
+            # n, ore_ore, clay_ore, obs_ore, obs_clay, geo_ore, geo_obs  
+            line = [x for x in line if x != '']
             data.append(line)
-
-    # # split lines in chunks
-    # data = [re.split(r"-|,", line) for line in data]
-    # # to numpy 2D array (characterwise)
-    # data = np.array([list(line) for line in data])
-    # # to numpy 2D array
-    # data = np.array(data)
-    # data = data.astype(int)
     return data
 
 
-def part1(data : NotImplemented) -> NotImplemented:
+def part1(data : list) -> int:
+    
     return
 
 
@@ -37,7 +32,7 @@ def part2(data : NotImplemented) -> NotImplemented:
 
 if __name__=='__main__':
     tic = time()
-    data = readData('../Data/day')
+    data = readData('../Data/day19t')
     print("data:", data, "\ntime:", tic-time())
 
     tic = time()
