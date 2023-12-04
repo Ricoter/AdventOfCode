@@ -1,5 +1,5 @@
 """
-    Advent of Code 2022, Day 4     🎄🎄🎄🎄
+    Advent of Code 2022, Day 20 🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄🎄
     Python v3.10.6
     Rico van Midde
 """
@@ -7,8 +7,6 @@ import numpy as np
 from copy import deepcopy
 import re
 from time import time
-
-def me
 
 def readData(infile : str) -> NotImplemented:
     data = []
